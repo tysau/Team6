@@ -11,7 +11,7 @@ public class Item implements Serializable {
 	private String callNumber;
 	private long id;
 	
-	private enum itemState {available, onLoan, damaged, reserved };
+	private enum itemState {AVAILABLE, ON_LOAN, DAMAGED, RESERVED };
 	private itemState state;
 	
 	
@@ -21,17 +21,17 @@ public class Item implements Serializable {
 	    this.title = title;
 	    this.callNo = callNumber;
 	    this.id = id;
-	    this.state = itemState.available;
+	    this.state = itemState.AVAILABLE;
 	}
 	
 	public String toString() {
-		StringBuilder Sb = new StringBuilder();
-		Sb.append("  Item:        ").append(id).append("\n")
-		  .append("  Type:        ").append(type).append("\n")
-		  .append("  Title:       ").append(title).append("\n")
-		  .append("  Author:      ").append(author).append("\n")
-		  .append("  Call Number: ").append(callNumber).append("\n")
-		  .append("  State:       ").append(state);
+	    StringBuilder Sb = new StringBuilder();
+	    Sb.append("  Item:        ").append(id).append("\n")
+	      .append("  Type:        ").append(type).append("\n")
+    	      .append("  Title:       ").append(title).append("\n")
+	      .append("  Author:      ").append(author).append("\n")
+              .append("  Call Number: ").append(callNumber).append("\n")
+	      .append("  State:       ").append(state);
 		
 	    return Sb.toString();
 	}
@@ -51,23 +51,23 @@ public class Item implements Serializable {
 
 	
 	public boolean isAvailable() {
-	    return state == itemState.available;
+	    return state == itemState.AVAILABLE;
 	}
 
 	
 	public boolean isOnLoan() {
-	    return state == itemState.onLoan;
+	    return state == itemState.ON_LOAN;
 	}
 
 	
 	public boolean isDamaged() {
-	    return state == itemState.damaged;
+	    return state == itemState.DAMAGED;
 	}
 
 	
 	public void takeOut() {
-		if (state.equals(itemState.available)) {
-		    state = itemState.onLoan;
+		if (state.equals(itemState.AVAILABLE)) {
+		    state = itemState.ON_LOAN;
 		}
 		
 		else  {
@@ -78,14 +78,14 @@ public class Item implements Serializable {
 	}
 
 
-	public void takeBack(boolean DaMaGeD) {
-		if (state.equals(itemState.onLoan)) {
-		    if (DaMaGeD) {
-	                state = itemState.damaged;	
+	public void takeBack(boolean DAMAGED) {
+		if (state.equals(itemState.ON_LOAN)) {
+		    if (DAMAGED) {
+	            state = itemState.DAMAGED;	
 			}
 
 			else {
-			    state = itemState.available;	
+			    state = itemState.AVAILABLE;	
 			}
 		}
 
@@ -98,8 +98,8 @@ public class Item implements Serializable {
 
 	
 	public void repair() {
-		if (state.equals(itemState.damaged)) {
-		    state = itemState.available;
+		if (state.equals(itemState.DAMAGED)) {
+		    state = itemState.AVAILABLE;
 		}
 		
 		else {
